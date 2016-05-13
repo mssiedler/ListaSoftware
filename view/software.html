@@ -1,0 +1,116 @@
+
+
+                <div class="row">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Dados da Softwares
+                        </div>
+                        <div class="panel-body">
+
+                            <div class="alert" ng-class="notificacaoClass" ng-show="mensagem !== ''">
+                                {{mensagem}} 
+                            </div>
+                            <form role="form" name="formulario">
+                                <hidden ng-model="software.id" name="id"/>
+                                <div class="col-lg-6">
+
+                                    <div class="form-group">
+                                        <label>Empresa</label>
+                                        <select name="selEmpresa" class="form-control" required="true" ng-model="software.empresa" ng-options="empresa.nome for empresa in empresas"
+                                        >
+                                            <option value="">Selecione</option>
+                                            
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Descrição</label>
+                                        <textarea class="form-control" ng-model="software.descricao" name="descricao" ng-required="true" ></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Categoria</label>
+                                        <select class="form-control" ng-model="software.categoria" 
+                                                >
+                                            <option value="">Selecione uma categoria</option>
+                                            <option>Administração Gerenciamento Rural</option>
+                                            <option>Agricultura</option>
+                                            <option>Avicultura</option>
+                                            <option>Defensivos Agrícolas</option>
+                                            <option>Irrigação</option>
+                                            <option>Nutrição Animal</option>
+                                            <option>Ovinos</option>
+                                            <option>Pecuária de Corte</option>
+                                            <option>Pecuária de Corte e Leite</option>
+                                            <option>Pecuária de Leite</option>
+                                            <option>Piscicultura</option>
+                                            <option>Rastreabilidade</option>
+                                            <option>Suinocultura</option>
+                                            <option>Veterinário</option>
+                                        </select>  
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>Nome Software</label>
+                                        <input class="form-control" ng-model="software.nome" ng-required="true" />
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label>Tema</label>
+                                        <input class="form-control" ng-model="software.tema" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Demo</label>
+                                        <input class="form-control" ng-model="software.demo" ng-required="true" />
+                                    </div>
+                                </div>
+                                
+
+                                <button class="btn btn-primary btn-sm" ng-click="adicionar(software)" ng-disabled="formulario.$invalid">Salvar</button>
+                                <button  class="btn btn-primary btn-sm btn-danger" ng-disabled="!isSelecionado()" ng-click="apagar()">Excluir</button>
+
+                            </form>
+
+                        </div>
+
+
+                    </div>
+                </div>
+                <!-- /.row -->
+                <div class="row">
+                    <div class="panel panel-default">
+
+                        <div class="panel-body">
+                            <input  class="form-control" type="text" ng-model="criterioDeBusca" placeholder="digite..." />
+                            <div class="table-responsive">
+                                <table ng-show="softwares.length > 0" class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Software</th>
+                                            <th>Empresa</th>
+                                            <th>Categoria</th>
+                                            <th>Tema</th>
+
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-click="editData($index)" ng-repeat="item in softwares| filter:criterioDeBusca | limitTo:10">
+                                            <td>{{item.nome}}</td>
+                                            <td>{{item.empresa.nome}}</td>
+                                            <td>{{item.categoria}}</td>
+                                            <td>{{item.tema}}</td>
+
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                                <!-- /.table-responsive -->
+                            </div>
+
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.row -->
+  

@@ -1,0 +1,10 @@
+#page-wrapper
+{
+
+    margin-left:2px;
+}
+.selecionado {
+    background-color: yellow;
+    cursor:pointer;
+}
+

@@ -1,0 +1,8 @@
+Estrelas - Avaliacao
+
+http://www.angulartutorial.net/2014/03/rating-stars-in-angular-js-using.html
+
+Bandeiras
+
+http://www.phoca.cz/download/category/91-phoca-css-flags#
+
