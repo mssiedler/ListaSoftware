@@ -1,4 +1,4 @@
-angular.module("appSoftware",["ngRoute"])
+angular.module("appSoftware",["ngRoute","ui.bootstrap"])
         .config(function($routeProvider){
             $routeProvider
     
@@ -12,6 +12,10 @@ angular.module("appSoftware",["ngRoute"])
                     })
                     .when('/software/:id', {
                         templateUrl: 'view/software.html',
+                        controller: 'appSoftwareCtrl'
+                    })
+                    .when('/login', {
+                        templateUrl: 'view/login.html',
                         controller: 'appSoftwareCtrl'
                     })
                     .when('/', {

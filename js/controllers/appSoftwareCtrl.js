@@ -1,5 +1,5 @@
 angular.module("appSoftware").controller("appSoftwareCtrl",
-        function($scope, $http, API, $routeParams)
+        function($scope, $http, API, $routeParams,$location)
         {
             $scope.titulo = "Sistemas de Softwares Agropecuários";
 
@@ -48,11 +48,23 @@ angular.module("appSoftware").controller("appSoftwareCtrl",
 
             };
 
-            $scope.editData = function(rowId) {
+            $scope.editData = function(obj) {
               
                 $scope.mensagem ="";
-                $scope.software = angular.copy($scope.softwares[rowId]);
-                $scope.selectedOption = $scope.software.empresa;
+                //O Objeto inteiro n funciona
+                $scope.software = obj;
+                //Forçar a empresa tbm não
+                $scope.software.empresa = obj.empresa;
+                //Agora percorrendo novamente a lista e atribuindo o item da lista
+                //funciona 
+                for (i = 0; i < $scope.empresas.length; i++) {
+                    if($scope.empresas[i].id ==obj.empresa.id)
+                    {
+                        $scope.software.empresa = $scope.empresas[i];
+                        break;
+                    }
+                }
+                
             };
             
             
@@ -62,7 +74,7 @@ angular.module("appSoftware").controller("appSoftwareCtrl",
                     $scope.software = {};
                     $scope.formulario.$setPristine();
                     carregarLista();
-                    $scope.mensagem = "Registro adicionado com sucesso";
+                    $scope.mensagem = "Registro excluído com sucesso";
                     $scope.notificacaoClass = "alert-success";
                 }).error(function(data, status) {
                     $scope.mensagem = "Aconteceu um problema: " + data;

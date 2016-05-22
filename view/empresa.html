@@ -70,7 +70,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-click="editData($index)" ng-repeat="emp in empresas| filter:criterioDeBusca | limitTo:10">
+                        <tr ng-click="editData(emp)" ng-repeat="emp in empresas| filter:criterioDeBusca ">
                             <td>{{emp.nome}}</td>
                             <td>{{emp.email}}</td>
                             <td>{{emp.site}}</td>
@@ -81,6 +81,13 @@
                     </tbody>
                 </table>
                 <!-- /.table-responsive -->
+                <pagination 
+      total-items="empresas.length" 
+      ng-model="currentPage" 
+      max-size="maxSize" 
+      class="pagination-sm" 
+      boundary-links="true">
+  </pagination>
             </div>
 
         </div>
@@ -90,4 +97,4 @@
 </div>
 <!-- /.row -->
 
-       
+

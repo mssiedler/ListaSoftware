@@ -66,7 +66,7 @@
                                 
 
                                 <button class="btn btn-primary btn-sm" ng-click="adicionar(software)" ng-disabled="formulario.$invalid">Salvar</button>
-                                <button  class="btn btn-primary btn-sm btn-danger" ng-disabled="!isSelecionado()" ng-click="apagar()">Excluir</button>
+                                <button  class="btn btn-primary btn-sm btn-danger" ng-disabled="formulario.$invalid" ng-click="apagar()">Excluir</button>
 
                             </form>
 
@@ -94,7 +94,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr ng-click="editData($index)" ng-repeat="item in softwares| filter:criterioDeBusca | limitTo:10">
+                                        <tr ng-click="editData(item)" ng-repeat="item in softwares| filter:criterioDeBusca | limitTo:10">
                                             <td>{{item.nome}}</td>
                                             <td>{{item.empresa.nome}}</td>
                                             <td>{{item.categoria}}</td>

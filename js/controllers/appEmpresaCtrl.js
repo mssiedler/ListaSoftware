@@ -1,5 +1,5 @@
 angular.module("appSoftware").controller("appEmpresaCtrl",
-        function($scope, $http, API,  $location)
+        function($scope, $http, API, $location)
         {
             $scope.titulo = "Sistemas de Softwares Agropecuários";
 
@@ -8,6 +8,21 @@ angular.module("appSoftware").controller("appEmpresaCtrl",
             $scope.empresa = {};
             $scope.mensagem = "";
             $scope.notificacaoClass = "";
+
+            $scope.filteredTodos = [];
+
+  $scope.currentPage = 1;
+  $scope.numPerPage = 10;
+  $scope.maxSize = 5;
+
+  
+
+  
+  
+  
+
+
+            
 
             var carregarLista = function()
             {
@@ -37,10 +52,10 @@ angular.module("appSoftware").controller("appEmpresaCtrl",
 
             };
 
-            $scope.editData = function(rowId) {
+            $scope.editData = function(emp) {
 
                 $scope.mensagem = "";
-                $scope.empresa = angular.copy($scope.empresas[rowId]);
+                $scope.empresa = emp;
 
             };
 
@@ -51,7 +66,7 @@ angular.module("appSoftware").controller("appEmpresaCtrl",
                     $scope.empresa = {};
                     $scope.formulario.$setPristine();
                     carregarLista();
-                    $scope.mensagem = "Registro adicionado com sucesso";
+                    $scope.mensagem = "Registro excluído com sucesso";
                     $scope.notificacaoClass = "alert-success";
                 }).error(function(data, status) {
                     $scope.mensagem = "Aconteceu um problema: " + data;
@@ -69,6 +84,15 @@ angular.module("appSoftware").controller("appEmpresaCtrl",
 
             carregarLista();
 
+function updateFilteredItems() {
+    
+    var begin = (($scope.currentPage - 1) * $scope.numPerPage),
+      end = begin + $scope.numPerPage;
+
+    $scope.filteredTodos = $scope.empresas.slice(begin, end);
+  };
+  
+  
 
 
         });
