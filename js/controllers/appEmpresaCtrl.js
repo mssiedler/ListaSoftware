@@ -1,7 +1,7 @@
 angular.module("appSoftware").controller("appEmpresaCtrl",
         function($scope, $http, API, $location)
         {
-            $scope.titulo = "Sistemas de Softwares Agropecuários";
+            $scope.titulo = "Gerenciamento de Empresas";
 
             $scope.empresas = [];
 
@@ -11,18 +11,10 @@ angular.module("appSoftware").controller("appEmpresaCtrl",
 
             $scope.filteredTodos = [];
 
-  $scope.currentPage = 1;
-  $scope.numPerPage = 10;
-  $scope.maxSize = 5;
+            $scope.currentPage = 1;
+            $scope.numPerPage = 10;
+            $scope.maxSize = 5;
 
-  
-
-  
-  
-  
-
-
-            
 
             var carregarLista = function()
             {
@@ -56,6 +48,7 @@ angular.module("appSoftware").controller("appEmpresaCtrl",
 
                 $scope.mensagem = "";
                 $scope.empresa = emp;
+                document.getElementById("nome").focus();
 
             };
 
@@ -84,15 +77,16 @@ angular.module("appSoftware").controller("appEmpresaCtrl",
 
             carregarLista();
 
-function updateFilteredItems() {
-    
-    var begin = (($scope.currentPage - 1) * $scope.numPerPage),
-      end = begin + $scope.numPerPage;
+            function updateFilteredItems() {
 
-    $scope.filteredTodos = $scope.empresas.slice(begin, end);
-  };
-  
-  
+                var begin = (($scope.currentPage - 1) * $scope.numPerPage),
+                        end = begin + $scope.numPerPage;
+
+                $scope.filteredTodos = $scope.empresas.slice(begin, end);
+            }
+            ;
+
+
 
 
         });

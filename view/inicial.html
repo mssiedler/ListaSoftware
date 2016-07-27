@@ -1,4 +1,11 @@
 <div class="row">
+    <div class="col-lg-19">
+        <h3 class="page-header">{{titulo}}</h3>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+
+<div class="row">
     <div class="panel panel-default">
 
         <div class="panel-body">
@@ -34,9 +41,9 @@
                             <td>{{item.categoria}}</td>
                             <td>{{item.tema}}</td>
                             <td> 
-                                <button  class="btn  btn-primary btn-sm" ng-click="go('/software/'+item.id)">+ Detalhes</button>
+                                <button  class="btn  btn-primary btn-sm" ng-click="go('/software/' + item.id)">+ Detalhes</button>
                                 <button  class="btn  btn-success btn-sm" ng-click="go('/empresa')">Avaliar</button>
-                             </td>
+                            </td>
 
                         </tr>
 

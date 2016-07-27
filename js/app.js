@@ -10,7 +10,15 @@ angular.module("appSoftware",["ngRoute","ui.bootstrap"])
                         templateUrl: 'view/software.html',
                         controller: 'appSoftwareCtrl'
                     })
+                    .when('/inicio', {
+                        templateUrl: 'view/inicial.html',
+                        controller: 'appSoftwareCtrl'
+                    })
                     .when('/software/:id', {
+                        templateUrl: 'view/software.html',
+                        controller: 'appSoftwareCtrl'
+                    })
+                    .when('/software/:empresa/:idempresa', {
                         templateUrl: 'view/software.html',
                         controller: 'appSoftwareCtrl'
                     })
