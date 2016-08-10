@@ -1,6 +1,5 @@
 #page-wrapper
 {
-
     margin-left:2px;
 }
 .selecionado {
@@ -8,3 +7,69 @@
     cursor:pointer;
 }
 
+.master-btns {
+    text-align: center;
+    margin: 20px 0 80px;
+}
+
+.master-btns a {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 15px;
+    border: 1px solid #CCC;
+    border-radius: 5px;
+}
+.master-btns a span{
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 80px;
+}
+.master-btns a span:first-child{
+    font-size: 26px;
+    height: 80px;
+    width: 80px;
+    text-align: center;
+    background-color: #AAA;
+    color: #FFF;
+    position: relative;
+    top: -1px;
+    margin-bottom: -1px;
+}
+.master-btns a span:nth-child(2){
+    padding: 0 40px;
+    font-size: 20px;
+    color: #333;
+}
+.master-btns a:hover span:nth-child(2){
+    background-color: #EEE;
+}
+
+.lista-categorias .item {
+    margin-bottom: 15px;
+    height: auto;
+    border: 1px solid transparent;
+    border-radius: 6px;
+}
+.lista-categorias .item:hover {
+    border-color: #CCC;
+}
+.lista-categorias a {
+    display: block;
+    color: #333;
+    text-align: center;
+    position: relative;
+}
+.lista-categorias a span{
+    display: block;
+    padding: 25px 0;
+}
+.lista-categorias a img {
+    max-width: 40%;
+    margin-bottom: 8px;
+}
+.lista-categorias a img,
+.lista-categorias a i{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}

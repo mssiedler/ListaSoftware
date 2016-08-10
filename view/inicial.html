@@ -2,63 +2,38 @@
     <div class="col-lg-19">
         <h3 class="page-header">{{titulo}}</h3>
     </div>
-    <!-- /.col-lg-12 -->
 </div>
-
 <div class="row">
-    <div class="panel panel-default">
-
-        <div class="panel-body">
-
-            <button  class="btn  btn-primary btn-sm fa fa-plus-square-o" ng-click="go('/empresa')">Gerenciar Empresas</button>
-            <button  class="btn  btn-primary btn-sm fa fa-plus-square-o" ng-click="go('/software')">Gerenciar Softwares</button>
-        </div>
+    <div class="master-btns">
+        <a href="index.html#/empresa"><span class="glyphicon glyphicon-tower"></span><span>Gerenciar Empresas</span></a>
+        <a href="index.html#/software"><span class="glyphicon glyphicon-floppy-disk"></span><span>Gerenciar Softwares</span></a>
     </div>
 </div>
-<!-- /.row -->
-<div class="row">
-    <div class="panel panel-default">
-
-        <div class="panel-body">
-            <input  class="form-control" type="text" ng-model="criterioDeBusca" placeholder="digite..." />
-            <div class="table-responsive">
-                <table ng-show="softwares.length > 0" class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>Software</th>
-                            <th>Empresa</th>
-                            <th>Categoria</th>
-                            <th>Tema</th>
-                            <th>&nbsp;</th>
-
-
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr  ng-repeat="item in softwares| filter:criterioDeBusca | limitTo:10">
-                            <td>{{item.nome}}</td>
-                            <td>{{item.empresa.nome}}</td>
-                            <td>{{item.categoria}}</td>
-                            <td>{{item.tema}}</td>
-                            <td> 
-                                <button  class="btn  btn-primary btn-sm" ng-click="go('/software/' + item.id)">+ Detalhes</button>
-                                <button  class="btn  btn-success btn-sm" ng-click="go('/empresa')">Avaliar</button>
-                            </td>
-
-                        </tr>
-
-                    </tbody>
-                </table>
-                <!-- /.table-responsive -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <canvas id="doughnut" 
+                    class="chart chart-doughnut"
+                    chart-data="data"
+                    chart-labels="labels"
+                    chart-options="options"
+                    width="400"
+                    height="400">
+            </canvas>
+        </div>
+        <div class="col-md-8 lista-categorias">
+            <div class="row">
+                <div ng-repeat="categoria in categorias">
+                    <div class="clearfix" ng-if="$index % 5 == 0"></div>
+                    <div class="col-md-2 item">
+                        <a href="index.html#/software/categoria/{{categoria.id}}">
+                            <span>
+                                <img src="imgs/{{categoria.image}}">
+                                <i>{{categoria.nome}}</i>
+                            </span>
+                        </a>
+                    </div>
+                </div>
             </div>
-
         </div>
-        <!-- /.panel-body -->
     </div>
-    <!-- /.panel -->
-</div>
-<!-- /.row -->
-
-
-</div>
-

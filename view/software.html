@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-lg-19">
         <h3 class="page-header">{{titulo}}</h3>
-        <button class="btn btn-primary btn-sm" ng-click="software={}">Novo Software</button>
+        <button class="btn btn-primary btn-sm" ng-click="software = {}">Novo Software</button>
         <br/><br/>
     </div>
     <!-- /.col-lg-12 -->
@@ -23,10 +23,13 @@
 
                     <div class="form-group">
                         <label>Empresa</label>
-                        <select name="selEmpresa" id="selEmpresa" class="form-control" required="true" ng-model="software.empresa" ng-options="empresa.nome for empresa in empresas"
-                                >
+                        <select name="selEmpresa" 
+                                id="selEmpresa" 
+                                class="form-control" 
+                                required="true" 
+                                ng-model="software.empresa_id" 
+                                ng-options="empresa.id as empresa.nome for empresa in empresas">
                             <option value="">Selecione</option>
-
                         </select>
                     </div>
                     <div class="form-group">
@@ -35,23 +38,10 @@
                     </div>
                     <div class="form-group">
                         <label>Categoria</label>
-                        <select class="form-control" ng-model="software.categoria" 
-                                >
+                        <select class="form-control" 
+                                ng-model="software.categoria_id"
+                                ng-options="categoria.id as categoria.nome for categoria in categorias">
                             <option value="">Selecione uma categoria</option>
-                            <option>Administração Gerenciamento Rural</option>
-                            <option>Agricultura</option>
-                            <option>Avicultura</option>
-                            <option>Defensivos Agrícolas</option>
-                            <option>Irrigação</option>
-                            <option>Nutrição Animal</option>
-                            <option>Ovinos</option>
-                            <option>Pecuária de Corte</option>
-                            <option>Pecuária de Corte e Leite</option>
-                            <option>Pecuária de Leite</option>
-                            <option>Piscicultura</option>
-                            <option>Rastreabilidade</option>
-                            <option>Suinocultura</option>
-                            <option>Veterinário</option>
                         </select>  
                     </div>
                 </div>
@@ -87,7 +77,17 @@
     <div class="panel panel-default">
 
         <div class="panel-body">
-            <input  class="form-control" type="text" ng-model="criterioDeBusca" placeholder="digite..." />
+            <div class="form-inline">
+                <div class="form-group">
+                    <input  class="form-control" type="text" ng-model="filtro.nome" placeholder="digite..." />
+                </div>
+                <div class="form-group">
+                    <select class="form-control" 
+                            ng-model="filtro.categoria_id"
+                            ng-options="categoria.id as categoria.nome for categoria in categorias">
+                    </select>
+                </div>
+            </div>
             <div class="table-responsive">
                 <table ng-show="softwares.length > 0" class="table table-hover">
                     <thead>
@@ -101,10 +101,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-click="editData(item)" ng-repeat="item in softwares| filter:criterioDeBusca | limitTo:10">
+                        <tr ng-click="editData(item)" ng-repeat="item in softwares| filter: getFiltros(filtro) | limitTo:10">
                             <td>{{item.nome}}</td>
                             <td>{{item.empresa.nome}}</td>
-                            <td>{{item.categoria}}</td>
+                            <td>{{item.categoria_id| categoriaNome}}</td>
                             <td>{{item.tema}}</td>
 
                         </tr>
