@@ -1,8 +1,8 @@
 angular.module("appSoftware")
         .controller("appEmpresaCtrl", AppEmpresaCtrl);
 
-AppEmpresaCtrl.$inject = ['$scope', 'FactoryService', '$location'];
-function AppEmpresaCtrl($scope, FactoryService, $location) {
+AppEmpresaCtrl.$inject = ['$scope', 'FactoryService', '$location', 'PaginatorService'];
+function AppEmpresaCtrl($scope, FactoryService, $location, PaginatorService) {
 
     $scope.titulo = "Gerenciamento de Empresas";
     $scope.empresas = [];
@@ -11,16 +11,13 @@ function AppEmpresaCtrl($scope, FactoryService, $location) {
     $scope.notificacaoClass = "";
 
     $scope.filteredTodos = [];
-
-    $scope.currentPage = 1;
-    $scope.numPerPage = 10;
-    $scope.maxSize = 5;
-
+    
+    $scope.paginador = PaginatorService;
 
     var carregarLista = function () {
         FactoryService.all('empresa').then(function (data) {
-            $scope.empresas = data.dados;
-            console.log($scope.empresas);
+            $scope.paginador.setData(data);
+            $scope.empresas = data;
         });
     };
 
@@ -34,26 +31,17 @@ function AppEmpresaCtrl($scope, FactoryService, $location) {
 
     carregarLista();
 
-    function updateFilteredItems() {
-
-        var begin = (($scope.currentPage - 1) * $scope.numPerPage),
-                end = begin + $scope.numPerPage;
-        $scope.filteredTodos = $scope.empresas.slice(begin, end);
-    }
-
-
-
     $scope.adicionar = function (empresa) {
         var data = angular.copy(empresa);
         FactoryService.save('empresa', null, null, data).then(function (data) {
-            if(data.erro === false) {
+            if (data.erro === false) {
                 $scope.empresa = {};
                 carregarLista();
                 $scope.mensagem = "Operação realizada com sucesso";
-                $scope.notificacaoClass = "alert-success";                
+                $scope.notificacaoClass = "alert-success";
             } else {
                 $scope.mensagem = "Erro ao inserir emprresa";
-                $scope.notificacaoClass = "alert-error";                 
+                $scope.notificacaoClass = "alert-error";
             }
         });
 

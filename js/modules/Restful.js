@@ -15,11 +15,14 @@ function Restful($http, API, $q) {
             return API.path + API.version + module;
         },
         getHeaders: function () {
+            return {};
+            /*
             return {
                 'headers': {
                     'Authorization': 'Bearer ' + window.localStorage.getItem('token')
                 }
             };
+            */
         },
         /**
          * Pega um ou mais itens

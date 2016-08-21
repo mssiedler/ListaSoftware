@@ -96,23 +96,21 @@
                             <th>Empresa</th>
                             <th>Categoria</th>
                             <th>Tema</th>
-
-
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-click="editData(item)" ng-repeat="item in softwares| filter: getFiltros(filtro) | limitTo:10">
+                        <tr ng-click="editData(item)" 
+                            ng-repeat="item in softwares | filter: getFiltros(filtro) | limitTo: paginador.getLimit() : paginador.getOffset()">
                             <td>{{item.nome}}</td>
                             <td>{{item.empresa.nome}}</td>
                             <td>{{item.categoria_id| categoriaNome}}</td>
                             <td>{{item.tema}}</td>
-
                         </tr>
-
                     </tbody>
                 </table>
                 <!-- /.table-responsive -->
             </div>
+            <ng-include src="'view/paginador.html'"></ng-include>
 
         </div>
         <!-- /.panel-body -->

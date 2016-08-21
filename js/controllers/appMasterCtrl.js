@@ -10,11 +10,20 @@ function AppMasterCtrl($scope, FactoryService, $filter, CategoriaService) {
     $scope.data = [];
     $scope.options = {legend: {display: true}};
 
-    FactoryService.all('relatorio').then(function (data) {
-        for (var key in data.dados) {
-            $scope.labels.push(($filter('categoriaNome')(key) + ' (' + data.dados[key].length + ')'));
-            $scope.data.push(data.dados[key].length);
-        }
+    FactoryService.all('software').then(function (data) {
+        var relatorio = [];
+        data.forEach(function (val) {
+            if (val !== undefined) {
+                if (relatorio[val.categoria_id] === undefined) {
+                    relatorio[val.categoria_id] = [];
+                }
+                relatorio[val.categoria_id].push(val);
+            }
+        });
+        relatorio.forEach(function (val, i) {
+            $scope.labels.push(CategoriaService.getNameById(i));
+            $scope.data.push(val.length);
+        });
     });
 
 

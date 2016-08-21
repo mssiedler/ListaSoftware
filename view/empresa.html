@@ -75,7 +75,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-click="editData(emp)" ng-repeat="emp in empresas| filter:criterioDeBusca ">
+                        <tr ng-click="editData(emp)" 
+                            ng-repeat="emp in empresas| filter:criterioDeBusca | limitTo: paginador.getLimit() : paginador.getOffset()">
                             <td>{{emp.nome}}</td>
                             <td>{{emp.email}}</td>
                             <td>{{emp.site}}</td>
@@ -85,15 +86,8 @@
 
                     </tbody>
                 </table>
-                <!-- /.table-responsive -->
-                <pagination 
-                    total-items="empresas.length" 
-                    ng-model="currentPage" 
-                    max-size="maxSize" 
-                    class="pagination-sm" 
-                    boundary-links="true">
-                </pagination>
             </div>
+            <ng-include src="'view/paginador.html'"></ng-include>
 
         </div>
         <!-- /.panel-body -->

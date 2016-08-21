@@ -6,7 +6,7 @@ angular.module("appSoftware", [
         ])
 
         .constant("API", {
-            "path": "http://embrapa-software/",
+            "path": "http://localhost:8084/WSEmbrapa/embrapa/",
             "version": ""
         });
 

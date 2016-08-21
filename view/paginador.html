@@ -1,0 +1,9 @@
+<div class="text-center">
+    <ul class="pagination">
+        <li ng-if="paginador.getPages() > 1"><a href="" ng-click="paginador.goTo(1)"><span class="fa fa-angle-double-left"></span></a></li>
+        <li ng-repeat="n in paginador.getRange() track by $index" ng-class="{'active': n === paginador.getPage()}">
+            <a href="" ng-click="paginador.goTo(n)">{{n}}</a>
+        </li>
+        <li ng-if="paginador.getPages() > 1"><a href="" ng-click="paginador.goTo(paginator.getPages())"><span class="fa fa-angle-double-right"></span></a></li>
+    </ul>
+</div>
