@@ -34,7 +34,8 @@ function AppEmpresaCtrl($scope, FactoryService, $location, PaginatorService) {
     $scope.adicionar = function (empresa) {
         var data = angular.copy(empresa);
         FactoryService.save('empresa', null, null, data).then(function (data) {
-            if (data.erro === false) {
+            console.log(typeof data);
+            if (data !== false) {
                 $scope.empresa = {};
                 carregarLista();
                 $scope.mensagem = "Operação realizada com sucesso";

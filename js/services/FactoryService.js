@@ -55,7 +55,7 @@ function FactoryService(Restful) {
             route = route || false;
             columns = columns || _columns;
             relations = relations || _relations;
-            var url = this.getUrl('get/' + domain, id, route, false, columns, relations);
+            var url = this.getUrl(domain + '/get', id, route, false, columns, relations);
             return Restful.get(url);
         },
         all: function (domain, route, columns, relations) {
@@ -76,14 +76,14 @@ function FactoryService(Restful) {
         put: function (domain, route, data) {
             domain = domain || _domain;
             route = route || false;
-            var url = this.getUrl('put/' + domain, data.id, route);
+            var url = this.getUrl(domain + '/update', data.id, route);
             return Restful.put(url, data);
         },
         post: function (domain, id, route, data) {
             domain = domain || _domain;
             id = id || false;
             route = route || false;
-            var url = this.getUrl('post/' + domain, id, route);
+            var url = this.getUrl(domain + '/insert', id, route);
             return Restful.post(url, data);
         },
         save: function (domain, id, route, data) {
@@ -95,7 +95,7 @@ function FactoryService(Restful) {
         },
         delete: function (domain, data) {
             domain = domain || _domain;
-            var url = this.getUrl('delete/' + domain);
+            var url = this.getUrl(domain + '/delete');
             return Restful.delete(url, data);
         }
     }

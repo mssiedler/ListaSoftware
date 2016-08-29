@@ -40,7 +40,7 @@ function AppSoftwareCtrl($scope, FactoryService, $location, CategoriaService, $r
         var data = angular.copy(software);
 
         FactoryService.save('software', null, null, data).then(function (data) {
-            if (data.erro === false) {
+            if (data !== false) {
                 $scope.software = {};
                 $scope.formulario.$setPristine();
                 carregarLista();

@@ -14,16 +14,6 @@ function Restful($http, API, $q) {
             var module = mod ? mod : '';
             return API.path + API.version + module;
         },
-        getHeaders: function () {
-            return {};
-            /*
-            return {
-                'headers': {
-                    'Authorization': 'Bearer ' + window.localStorage.getItem('token')
-                }
-            };
-            */
-        },
         /**
          * Pega um ou mais itens
          *
@@ -36,7 +26,7 @@ function Restful($http, API, $q) {
          */
         get: function (path) {
             var deferred = $q.defer();
-            $http.get(this.getPath(path), this.getHeaders()).then(function (response) {
+            $http.get(this.getPath(path)).then(function (response) {
                 deferred.resolve(response.data);
             }, function (response) {
                 deferred.reject(response);
@@ -57,7 +47,7 @@ function Restful($http, API, $q) {
             if (timeout) {
                 config.timeout = timeout;
             }
-            $http.post(this.getPath(path), data, this.getHeaders()).then(function (response) {
+            $http.post(this.getPath(path), data).then(function (response) {
                 deferred.resolve(response.data);
             }, function (response) {
                 deferred.reject(response);
@@ -74,7 +64,7 @@ function Restful($http, API, $q) {
          */
         put: function (path, data) {
             var deferred = $q.defer();
-            $http.put(this.getPath(path), data, this.getHeaders()).then(function (response) {
+            $http.put(this.getPath(path), data).then(function (response) {
                 deferred.resolve(response.data);
             }, function (response) {
                 deferred.reject(response);
@@ -96,7 +86,7 @@ function Restful($http, API, $q) {
             path = this.getPath(path) + '/' + data.id;
             var confirmed = confirm('Continuar na exclusão do item?');
             if (confirmed) {
-                $http.delete(path, this.getHeaders()).then(function (response) {
+                $http.delete(path).then(function (response) {
                     deferred.resolve(response.data);
                 }, function (response) {
                     deferred.reject(response);
